@@ -1,13 +1,5 @@
 import * as React from "react";
-
-export interface PanelProps {
-  search: string;
-}
-
-export interface ListProps {
-  searchName: string;
-  searchKind: string;
-}
+import { PanelProps, ListProps } from "../types";
 
 function Item(props: ListProps) {
   return (

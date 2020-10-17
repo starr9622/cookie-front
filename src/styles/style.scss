@@ -3,113 +3,280 @@
 @import "mixin";
 @import "font";
 
+body{
+    height: 100vh;
+    background: #eee;
+}
+
+.process{
+    height: 100vh;
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    width: 100%;
+    z-index: 10;
+    animation: 4s linear 1s infinite cookie_face;
+}
+
+@keyframes cookie_face { 
+    0% { 
+        background-image: url("../../resources/Cookies/CookieFaces/GingerBrave.png");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 50%;
+    }  
+    25% { 
+        background-image:url("../../resources/Cookies/CookieFaces/Strawberry\ Cookie.png"); 
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 50%;
+    }  
+    50% { 
+        background-image:url("../../resources/Cookies/CookieFaces/Skater\ Cookie.png");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 50%;
+    }  
+    75% { 
+        background-image: url("../../resources/Cookies/CookieFaces/GingerBright.png");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 50%;
+    }  
+    100% { 
+        background-image:url("../../resources/Cookies/CookieFaces/GingerBrave.png");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 50%;
+    }  
+}
+
 .searchWrap {
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
-  min-height: $basic * 3;
-  border-radius: $basic * 1.5;
-  overflow: hidden;
-  border: 1px solid #eee;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-column-gap: #{$basic};
-  margin-top: #{$basic};
+    width: $wrapWidth;
+    margin: 1rem auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    min-height: $basic * 3;
+    border-radius: $basic * 1.5;
+    overflow: hidden;
+    border: 1px solid $linecolor;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: #{$basic};
+    z-index: 2;
 
-  input {
-    padding: $basic;
-    grid-area: 1 / 1 / 1 / 5;
+    input {
+        padding: $basic;
+        padding-left: $basic*2;
+        grid-area: 1 / 1 / 1 / 5;
+        background: #fff;
 
-    &:focus {
-      outline: none;
+        &:focus {
+            outline: none;
+        }
     }
-  }
 
-  button {
-    grid-area: 1 / 5 / 1 / 6;
+    button {
+        background: #fff;
+        border-left: 1px solid #dfdfdf;
+        grid-area: 1 / 5 / 1 / 6;
+        cursor: pointer;
 
-    &:focus {
-      outline: none;
+        &:focus,
+        &:hover {
+            outline: none;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
     }
-  }
 }
 
 .searchMain {
-  width: $wrapWidth;
-  max-height: $basic * 15;
-  height: $basic * 15;
-  margin: auto;
+    width: $wrapWidth;
+    max-width: $basic * 59;
+    max-height: $basic * 15;
+    height: $basic * 15;
+    margin: auto;
+    position: relative;
 }
 
 .searchListMain {
-  width: $wrapWidth;
-  margin: auto;
+    width: $wrapWidth;
+    margin: auto;
+    position: relative;
 }
 
 .mainImgWrap {
-  position: relative;
-  height: inherit;
-  overflow: hidden;
-  padding-top: $basic * 5;
-  transition: padding-top 0.4s ease, width 0.4s ease, height 0.4s ease;
+    position: relative;
+    height: inherit;
+    overflow: hidden;
+    padding-top: $basic * 5;
+    transition: padding-top 0.4s ease, width 0.4s ease, height 0.4s ease;
 }
 
 .mainImgWrap img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .searchPanel {
-  padding: $basic;
-  grid-area: 2 / 1 / 2 / 6;
-  border-top: 1px solid #ececec;
-
-  p {
-    &:hover,
-    :focus {
-      background: rgba(0, 0, 0, 0.1);
-    }
-
     padding: $basic;
+    grid-area: 2 / 1 / 2 / 6;
+    border-top: 1px solid $linecolor;
+    background: #fff;
+    p {
+        &:hover,
+        &:focus {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        padding: $basic;
+        cursor: pointer;
+
+        span {
+            font-size: 0.5rem;
+            vertical-align: middle;
+            padding-left: 0.5rem;
+            color: $textcolor;
+        }
+    }
+}
+
+.subTitle {
+    display: flex;
+    align-items: center;
+    font-size: $basic*1.5;
+    margin: $basic*1.5 0;
+
+    &::before,
+    &::after {
+        content: "";
+        height: 4px;
+        background-color: $linecolor;
+        flex-grow: 1;
+        margin: $basic;
+    }
+}
+
+.gridCardList {
+    padding: $basic;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: $basic*0.8;
+    grid-row-gap: $basic*0.8;
+}
+
+.itemWrap {
+    display: grid;
+    align-items: stretch;
+    grid-row-gap: $basic*0.8;
     cursor: pointer;
 
     span {
-      font-size: 0.5rem;
-      vertical-align: middle;
-      padding-left: 0.5rem;
-      color: #666666;
+        margin: 0 auto;
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 0;
+            height: $basic;
+            transition: all 0.5s ease-in-out;
+            transition-duration: 0.5s;
+            opacity: 0;
+            background-color: $textbghovercolor;
+            z-index: -1;
+        }
     }
-  }
+
+    .itemCard {
+        overflow: hidden;
+        padding: $basic;
+        box-sizing: border-box;
+        height: $basic*15;
+        &.pet{
+            max-height: 16rem;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s ease-in-out 0s;
+        }
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.1);
+        }
+
+        span {
+            &:after{
+                width: 100%;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+.emptyList {
+    text-align: center;
+}
+
+.resultList {
+    padding-top: $basic * 4.5;
+}
+
+.noPage{
+    padding: $basic;
+    margin: $basic*5 auto;
+    text-align: center;
 }
 
 @include desktop {
-  .mainImgWrap {
-    padding-top: $basic * 5;
-  }
+    .mainImgWrap {
+        padding-top: $basic * 5;
+    }
 
-  .searchMain {
-    height: $basic * 15;
-  }
+    .searchMain {
+        height: $basic * 15;
+    }
+
+    .gridCardList {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 @include tablet {
-  .mainImgWrap {
-    padding-top: $basic * 5;
-  }
+    .mainImgWrap {
+        padding-top: $basic * 5;
+    }
 
-  .searchMain {
-    height: $basic * 10;
-  }
+    .searchMain {
+        height: $basic * 13;
+    }
+
+    .gridCardList {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @include mobile {
-  .mainImgWrap {
-    padding-top: $basic * 2;
-  }
+    .mainImgWrap {
+        padding-top: $basic * 2;
+    }
 
-  .searchMain {
-    height: $basic * 10;
-  }
+    .searchMain {
+        height: $basic * 10;
+    }
+
+    .gridCardList {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

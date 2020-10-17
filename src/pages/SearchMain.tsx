@@ -1,17 +1,26 @@
 import * as React from "react";
-import Image from "../components/Image";
-import SearchArea from "../components/SearchArea";
+import { MainImage, SearchArea } from "../components";
+import * as Api from "../apis/search"
 
-const img = {
-  path: "../../resources/images/main.png",
-  alt: "쿠키런 아이스 메인",
-};
+function SearchMain() {
+  const [items, setItem] = React.useState(null);
 
-export default function SearchMain() {
+  React.useEffect( () => {
+    if(!items) Api.fetchMainImage().then(e=> setItem(e.data));
+  });
+
+  if(!items) return null;
   return (
+    <>
     <div className="searchMain">
-      <Image path={img.path} alt={img.alt} />
-      <SearchArea />
+    <MainImage path={items.path} alt={items.alt} />
+    <SearchArea />
     </div>
+    </>
   );
 }
+
+
+
+
+export default SearchMain;
