@@ -19,16 +19,16 @@ export class ApiError implements IApiError {
   }
 }
 
-export function fetchSearch() {
+export function requestSearch(search: string) {
   return new Promise((resolve, reject) => {
     axios
-      .get(endpoint.searchItem())
+      .get(endpoint.searchItem(search))
       .then((resp: AxiosResponse) => resolve(resp.data))
       .catch((err: AxiosError) => reject(new ApiError(err)));
   });
 }
 
-export async function fetchMainImage() {
+export function fetchMainImage() {
   return new Promise((resolve, reject) => {
     axios
       .get(endpoint.mainImage())
@@ -37,10 +37,10 @@ export async function fetchMainImage() {
   });
 }
 
-export function fetchListItem() {
+export function fetchItemList(search: string) {
   return new Promise((resolve, reject) => {
     axios
-      .get(endpoint.listItem())
+      .get(endpoint.listItem(search))
       .then((resp: AxiosResponse) => resolve(resp.data))
       .catch((err: AxiosError) => reject(new ApiError(err)));
   });

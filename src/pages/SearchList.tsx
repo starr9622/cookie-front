@@ -1,6 +1,8 @@
 import * as React from "react";
-import { SearchArea, Title, GridList, EmptyList } from "../components";
-import { PropsList } from "../types";
+import { Title, GridList, EmptyList } from "../components";
+import { PropsList, IStoreState } from "../types";
+import { SearchArea } from "../containers";
+import { useSelector } from "react-redux";
 
 function List(props: PropsList) {
   if (props.data.length) {
@@ -10,39 +12,7 @@ function List(props: PropsList) {
 }
 
 export default function SearchList() {
-  let info = [
-    {
-      kind: "쿠키",
-      data: [
-        {
-          name: "용감한 쿠키",
-          image: "../resources/Cookies/GingerBrave.png",
-        },
-        {
-          name: "용과 드래곤 쿠키",
-          image: "../resources/Cookies/Pitaya Dragon Cookie.png",
-        },
-        {
-          name: "용사맛 쿠키",
-          image: "../resources/Cookies/Knight Cookie.png",
-        },
-      ],
-    },
-    {
-      kind: "펫",
-      data: [
-        {
-          name: "푸른 회오리 용",
-          image: "../resources/Pets/Ocean Dragon.png",
-        },
-        {
-          name: "용의 꼬리",
-          image: "../resources/Pets/Silkweave Cocoon.png",
-        },
-      ],
-    },
-    { kind: "보물", data: [] },
-  ];
+  let info = useSelector((state:IStoreState) => state.itemList )
   return (
     <div className="searchListMain">
       <SearchArea />

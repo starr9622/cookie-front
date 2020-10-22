@@ -65,6 +65,18 @@ body{
     grid-template-columns: repeat(5, 1fr);
     margin-top: #{$basic};
     z-index: 2;
+    &:focus-within,
+    &:hover{
+        .searchPanel{
+            display: block;
+        }
+    }
+
+    &:active{
+        .searchPanel{
+            // display: none;
+        }
+    }
 
     input {
         padding: $basic;
@@ -125,16 +137,17 @@ body{
 }
 
 .searchPanel {
+    display: none;
     padding: $basic;
     grid-area: 2 / 1 / 2 / 6;
     border-top: 1px solid $linecolor;
     background: #fff;
+
     p {
         &:hover,
         &:focus {
             background: rgba(0, 0, 0, 0.1);
         }
-
         padding: $basic;
         cursor: pointer;
 

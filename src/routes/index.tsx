@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import * as Page from "../pages";
 
 const Router: React.FC = () => {
